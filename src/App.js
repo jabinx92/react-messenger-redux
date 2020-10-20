@@ -1,15 +1,36 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import './App.css';
-import {Messenger} from './Messenger'
+import { selectUser, login, logout } from './features/userSlice';
+import Messenger from './Messenger';
+import  Login  from './Login';
+import {auth} from "./firebase";
 
 function App() {
-  return (
-    //BEM naming convention
-    <div className="app">
+  const user = useSelector(selectUser);
+  console.log(user)
+  const dispatch = useDispatch();
 
-      <Messenger />
-    </div>
-  );
+  useEffect(() => {
+    auth.onAuthStateChanged((authUser) => {
+      if(authUser) {
+        //user is logged in
+        dispatch(
+          login({
+          uid: authUser.uid,
+          photo: authUser.photoURL,
+          email: authUser.email,
+          displayName: authUser.displayName,
+        })
+        );
+      } else {
+        //user is logged out
+        dispatch(logout())
+      }
+    });
+  }, []);
+
+  return <div className="app">{user ? <Messenger /> : <Login />}</div>;
 }
 
 export default App;

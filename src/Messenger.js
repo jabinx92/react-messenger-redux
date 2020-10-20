@@ -3,7 +3,7 @@ import { Chat } from './Chat';
 import './Messenger.css';
 import {Sidebar} from './Sidebar'
 
-export function Messenger(props) {
+function Messenger() {
     
 
     return (
@@ -13,3 +13,5 @@ export function Messenger(props) {
         </div>
     )
 }
+
+export default Messenger
