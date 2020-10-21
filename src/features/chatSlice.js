@@ -1,7 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-export const chatSlice = 
-createSlice({
+export const chatSlice = createSlice({
   name: "chat",
   initialState: {
     chatId: null,
@@ -9,9 +8,8 @@ createSlice({
   },
   reducers: {
     setChat: (state, action) => {
-      state.chat = action.payload.chatId;
+      state.chatId = action.payload.chatId;
       state.chatName = action.payload.chatName;
-
     },
   },
 });
@@ -19,7 +17,7 @@ createSlice({
 export const { setChat } = chatSlice.actions;
 
 
-export const selectchatName = (state) => state.chat.chatName;
+export const selectChatName = (state) => state.chat.chatName;
 export const selectChatId = (state) => state.chat.chatId;
 
 

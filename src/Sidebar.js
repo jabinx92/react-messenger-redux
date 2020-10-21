@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import "./Sidebar.css"
 import SearchIcon from '@material-ui/icons/Search'
 import { RateReviewOutlined } from '@material-ui/icons'
-import { Sidebarchat } from './SidebarChat'
+import { SidebarChat } from './SidebarChat'
 import { useSelector } from 'react-redux'
 import { selectUser } from './features/userSlice'
 import db, { auth } from "./firebase"
@@ -45,7 +45,7 @@ export function Sidebar(props) {
 
             <div className="sidebar__chats">
                 {chats.map(({id, data: {chatName}}) => (
-                  <Sidebarchat key={id} id={id} chatName={chatName}/>
+                  <SidebarChat key={id} id={id} chatName={chatName}/>
                 ))}
             </div>
         </div>
