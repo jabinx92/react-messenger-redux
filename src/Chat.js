@@ -1,5 +1,5 @@
 import { IconButton } from '@material-ui/core';
-import MicNoneIcon from"@material-ui/icons/MicNone";
+import SendIcon from '@material-ui/icons/Send';
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import './Chat.css'
@@ -80,7 +80,7 @@ export function Chat() {
                   </form>
 
                     <IconButton>
-                      <MicNoneIcon className ='chat__mic' />
+                      <SendIcon onClick={sendMessage} className ='chat__mic' />
                     </IconButton>
               </div>
           </div>
