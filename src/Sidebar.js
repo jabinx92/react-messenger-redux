@@ -32,6 +32,8 @@ export function Sidebar(props) {
     const [chats, setChats] = useState([]);
     const classes = useStyles();
     const [open, setOpen] = useState(false);
+    const [search, setSearch] = useState('')
+
   
     const handleOpen = () => {
       setOpen(true);
@@ -62,7 +64,6 @@ export function Sidebar(props) {
     return (
     <div className="sidebar">
       <div className="sidebar__header">
-        {/* <Avatar onClick={() => auth.signOut()} src={user.photo} className='sidebar__avatar'/> */}
         <Avatar onClick={handleOpen} src={user.photo} className='sidebar__avatar'/>
         <div className="sidebar__input">
           <SearchIcon />
