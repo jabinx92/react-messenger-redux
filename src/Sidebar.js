@@ -7,6 +7,7 @@ import { SidebarChat } from './SidebarChat'
 import { useSelector } from 'react-redux'
 import { selectUser } from './features/userSlice'
 import db, { auth } from "./firebase"
+import Signout from './Signout'
 
 export function Sidebar(props) {
     const user = useSelector(selectUser);
@@ -33,7 +34,8 @@ export function Sidebar(props) {
     return (
         <div className="sidebar">
             <div className="sidebar__header">
-                <Avatar onClick={() => auth.signOut()} src={user.photo} className='sidebar__avatar'/>
+                {/* <Avatar onClick={() => auth.signOut()} src={user.photo} className='sidebar__avatar'/> */}
+                <Avatar onClick={() => alert(<Signout/>)} src={user.photo} className='sidebar__avatar'/>
                 <div className="sidebar__input">
                     <SearchIcon />
                     <input placeholder="Search"/>
