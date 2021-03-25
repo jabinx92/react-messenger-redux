@@ -34,7 +34,6 @@ export function Sidebar(props) {
     const [open, setOpen] = useState(false);
     const [search, setSearch] = useState('')
 
-  
     const handleOpen = () => {
       setOpen(true);
     };
@@ -61,19 +60,28 @@ export function Sidebar(props) {
       }
     }
 
+    const searchFunction = (e) => {
+      setSearch(e.target.value)
+      console.log(search)
+      console.log(chats)
+      const filtered = chats.filter(chat => {
+        return chat.data.chatName.toLowerCase().includes(search.toLowerCase())
+      })
+      // console.log(filtered)
+      setChats(filtered)
+    }
     return (
     <div className="sidebar">
       <div className="sidebar__header">
         <Avatar onClick={handleOpen} src={user.photo} className='sidebar__avatar'/>
         <div className="sidebar__input">
           <SearchIcon />
-          <input placeholder="Search"/>
+          <input placeholder="Search" value={search} onChange={e => searchFunction(e)}/>
         </div>
           <IconButton variant='outlined' className='sidebar__inputButton'>
             <RateReviewOutlined onClick={addChat}/>
           </IconButton>
       </div>
-
       <div className="sidebar__chats">
           {chats.map(({id, data: {chatName}}) => (
             <SidebarChat key={id} id={id} chatName={chatName}/>
