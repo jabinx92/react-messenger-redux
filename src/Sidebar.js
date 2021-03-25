@@ -94,9 +94,8 @@ export function Sidebar(props) {
           <Fade in={open}>
             <div className={classes.paper}>
               <h2 id="transition-modal-title">Are you sure you want to sign out?</h2>
-              <p id="transition-modal-description" onClick={() => auth.signOut()}>Yes</p>
-              <p id="transition-modal-description" onClick={handleClose}>No</p>
-
+              <button onClick={() => auth.signOut()}>Yes</button>
+              <button onClick={handleClose}>No</button>
             </div>
           </Fade>
         </Modal>
