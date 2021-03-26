@@ -30,6 +30,7 @@ const useStyles = makeStyles((theme) => ({
 export function Sidebar(props) {
   const user = useSelector(selectUser);
   const [chats, setChats] = useState([]);
+  const [filterChats, setFilteredChats] = useState([]);
   const classes = useStyles();
   const [open, setOpen] = useState(false);
   const [search, setSearch] = useState('');
@@ -63,16 +64,15 @@ export function Sidebar(props) {
   };
 
   const searchFunction = (e) => {
-    setSearch(e)
-    console.log(search)
-    console.log(chats)
+    setSearch(e);
+    console.log(search);
+    console.log(chats);
     const filtered = chats.filter(chat => {
       return chat.data.chatName.toLowerCase().includes(e.toLowerCase())
-    })
-    // console.log(filtered)
-    setChats(filtered)
+    });
+    setFilteredChats(filtered);
   };
-  
+
   return (
     <div className="sidebar">
       <div className="sidebar__header">
