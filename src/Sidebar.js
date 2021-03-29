@@ -52,6 +52,14 @@ export function Sidebar(props) {
         }))
       )
     );
+    db.collection('chats').onSnapshot((snapshot) =>
+    setFilteredChats(
+        snapshot.docs.map((doc) => ({
+          id: doc.id,
+          data: doc.data(),
+        }))
+      )
+    );
   }, []);
 
   const addChat = () => {
@@ -65,8 +73,8 @@ export function Sidebar(props) {
 
   const searchFunction = (e) => {
     setSearch(e);
-    console.log(search);
-    console.log(chats);
+    // console.log(search);
+    // console.log(chats);
     const filtered = chats.filter(chat => {
       return chat.data.chatName.toLowerCase().includes(e.toLowerCase())
     });
@@ -94,7 +102,8 @@ export function Sidebar(props) {
         </IconButton>
       </div>
       <div className="sidebar__chats">
-        {chats.map(({ id, data: { chatName } }) => (
+        {console.log(filterChats)}
+        {filterChats.map(({ id, data: { chatName } }) => (
           <SidebarChat key={id} id={id} chatName={chatName} />
         ))}
       </div>

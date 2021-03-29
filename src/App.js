@@ -8,7 +8,6 @@ import {auth} from "./firebase";
 
 function App() {
   const user = useSelector(selectUser);
-  console.log(user)
   const dispatch = useDispatch();
 
   useEffect(() => {
