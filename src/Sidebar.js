@@ -73,8 +73,6 @@ export function Sidebar(props) {
 
   const searchFunction = (e) => {
     setSearch(e);
-    // console.log(search);
-    // console.log(chats);
     const filtered = chats.filter(chat => {
       return chat.data.chatName.toLowerCase().includes(e.toLowerCase())
     });
