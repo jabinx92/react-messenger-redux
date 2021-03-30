@@ -20,22 +20,24 @@ export function SidebarChat({id, chatName}) {
     }, [id])
     
     return (
-      <div 
-      onClick={()=> 
-        dispatch(
-          setChat({
-            chatId: id,
-            chatName: chatName,
-          })
-        )
-      }
-       className='sidebarChat'
-    >
-        <Avatar src={chatInfo[0]?.photo}/>
-        <div className="sidebarChat__info">
-          <h3>{chatName}</h3>
-          <p>{chatInfo[0]?.message}</p>
-          <small>{timeago.format(new Date(chatInfo[0]?.timestamp?.toDate()))}</small>
+      <div> 
+        <div 
+        onClick={()=> 
+          dispatch(
+            setChat({
+              chatId: id,
+              chatName: chatName,
+            })
+            )
+          }
+          className='sidebarChat'
+          >
+          <Avatar src={chatInfo[0]?.photo}/>
+          <div className="sidebarChat__info">
+            <h3>{chatName}</h3>
+            <p>{chatInfo[0]?.message}</p>
+            <small>{timeago.format(new Date(chatInfo[0]?.timestamp?.toDate()))}</small>
+          </div>
         </div>
       </div>
     )
