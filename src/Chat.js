@@ -46,6 +46,10 @@ export function Chat() {
 
 
     const sendMessage = (e) => {
+        if(input.length <= 0) {
+            return
+        }
+
         e.preventDefault();
         console.log(e)
             db.collection('chats').doc(chatId).collection('messages').add({
