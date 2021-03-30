@@ -102,7 +102,7 @@ export function Chat() {
                 <h4>
                     To: <span className="chat__name">{chatName}</span>
                 </h4>
-                <strong onClick={handleOpen}>Details</strong>
+                <strong onClick={handleOpen} style={{cursor: "pointer"}}>Details</strong>
             </div>
 
             <Modal
