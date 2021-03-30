@@ -1,6 +1,6 @@
 import { IconButton } from '@material-ui/core';
 import SendIcon from '@material-ui/icons/Send';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { useSelector } from 'react-redux';
 import './Chat.css';
 import { selectChatId, selectChatName } from './features/chatSlice';
@@ -15,8 +15,9 @@ export function Chat() {
     const user = useSelector(selectUser);
     const [input, setInput] = useState("");
     const chatName = useSelector(selectChatName);
-    const chatId = useSelector(selectChatId)
+    const chatId = useSelector(selectChatId);
     const [messages, setMessages] = useState([]);
+    const messageEl = useRef(null);
 
     useEffect(()=> {
         if(chatId) {
@@ -32,7 +33,16 @@ export function Chat() {
                 }))
     ));
         }
-    },[chatId])
+    },[chatId]);
+
+    useEffect(() => {
+        if (messageEl) {
+          messageEl.current.addEventListener('DOMNodeInserted', event => {
+            const { currentTarget: target } = event;
+            target.scroll({ top: target.scrollHeight, behavior: 'smooth' });
+          });
+        }
+      }, [])
 
 
     const sendMessage = (e) => {
@@ -60,7 +70,7 @@ export function Chat() {
               </div>
 
               {/* chat messages */}
-              <div className="chat__messages">
+              <div className="chat__messages" ref={messageEl}>
                   <FlipMove>
                   {messages.map(({id, data}) => (
                       <Message key={id} contents={data}/>
