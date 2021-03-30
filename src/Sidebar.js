@@ -32,8 +32,8 @@ export function Sidebar(props) {
   const [chats, setChats] = useState([]);
   const [filterChats, setFilteredChats] = useState([]);
   const classes = useStyles();
-  const [open, setOpen] = useState(false);
   const [search, setSearch] = useState('');
+  const [open, setOpen] = useState(false);
 
   const handleOpen = () => {
     setOpen(true);
