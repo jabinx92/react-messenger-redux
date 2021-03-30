@@ -51,7 +51,6 @@ export function Chat() {
     
 
     return (
-
           <div className="chat">
               <div className="chat__header">
                   <h4>
@@ -63,7 +62,6 @@ export function Chat() {
               {/* chat messages */}
               <div className="chat__messages">
                   <FlipMove>
-
                   {messages.map(({id, data}) => (
                       <Message key={id} contents={data}/>
                       ))}
