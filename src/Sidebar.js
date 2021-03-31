@@ -8,37 +8,17 @@ import { useSelector } from 'react-redux';
 import { selectUser } from './features/userSlice';
 import db, { auth } from './firebase';
 
-import { makeStyles } from '@material-ui/core/styles';
-import Modal from '@material-ui/core/Modal';
-import Backdrop from '@material-ui/core/Backdrop';
-import Fade from '@material-ui/core/Fade';
-
-import Card from '@material-ui/core/Card';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
-
-const useStyles = makeStyles((theme) => ({
-  modal: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  root: {
-    maxWidth: 345,
-  },
-  media: {
-    height: 140,
-  },
-}));
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
 
 export function Sidebar(props) {
   const user = useSelector(selectUser);
   const [chats, setChats] = useState([]);
   const [filterChats, setFilteredChats] = useState([]);
-  const classes = useStyles();
   const [search, setSearch] = useState('');
   const [open, setOpen] = useState(false);
 
@@ -107,47 +87,32 @@ export function Sidebar(props) {
         </IconButton>
       </div>
       <div className="sidebar__chats">
-        {console.log(filterChats)}
         {filterChats.map(({ id, data: { chatName } }) => (
           <SidebarChat key={id} id={id} chatName={chatName} />
         ))}
       </div>
 
-      <Modal
-        aria-labelledby="transition-modal-title"
-        aria-describedby="transition-modal-description"
-        className={classes.modal}
+      <Dialog
         open={open}
         onClose={handleClose}
-        closeAfterTransition
-        BackdropComponent={Backdrop}
-        BackdropProps={{
-          timeout: 500,
-        }}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
       >
-        <Fade in={open}>
-          <Card className={classes.root}>
-            <CardActionArea>
-              <CardContent>
-                <Typography gutterBottom variant="h5" component="h2">
-                  {user.displayName.split(' ').slice(0,1).join(' ')},
-                </Typography>
-                <Typography variant="body2" color="textSecondary" component="p">
-                  Are you sure you want to sign out?
-                </Typography>
-              </CardContent>
-            </CardActionArea>
-            <CardActions>
-              <Button onClick={() => auth.signOut()} size="small" color="primary">
-                Yes
-              </Button>
-              <Button onClick={handleClose} size="small" color="primary">
-                No
-              </Button>
-            </CardActions>
-          </Card>
-        </Fade>
-      </Modal>
+        <DialogTitle id="alert-dialog-title">{`${user.displayName.split(' ').slice(0,1).join(' ')},`}</DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+          Are you sure you want to sign out?
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => auth.signOut()} color="primary">
+            Yes
+          </Button>
+          <Button onClick={handleClose} color="primary" autoFocus>
+            No
+          </Button>
+        </DialogActions>
+      </Dialog>
     </div>
   );
 }

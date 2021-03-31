@@ -8,28 +8,14 @@ import db from './firebase';
 import  Message  from './Message';
 import firebase from 'firebase';
 import { selectUser } from './features/userSlice';
+
 import FlipMove from "react-flip-move";
-
-import { makeStyles } from '@material-ui/core/styles';
-import Modal from '@material-ui/core/Modal';
-import Backdrop from '@material-ui/core/Backdrop';
-import Fade from '@material-ui/core/Fade';
-
-const useStyles = makeStyles((theme) => ({
-  modal: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  paper: {
-    backgroundColor: theme.palette.background.paper,
-    boxShadow: theme.shadows[5],
-    padding: theme.spacing(2, 4, 3),
-  },
-}));
-
-
-
+import Button from '@material-ui/core/Button';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
 
 export function Chat() {
     const user = useSelector(selectUser);
@@ -38,7 +24,6 @@ export function Chat() {
     const chatId = useSelector(selectChatId);
     const [messages, setMessages] = useState([]);
     const messageEl = useRef(null);
-    const classes = useStyles();
     const [open, setOpen] = useState(false);
 
     const handleOpen = () => {
@@ -49,7 +34,6 @@ export function Chat() {
       setOpen(false);
     };
   
-
     useEffect(()=> {
         if(chatId) {
             db.collection('chats')
@@ -80,7 +64,6 @@ export function Chat() {
         if(input.length <= 0) {
             return;
         }
-
         e.preventDefault();
         console.log(e)
             db.collection('chats').doc(chatId).collection('messages').add({
@@ -104,26 +87,27 @@ export function Chat() {
                 <strong onClick={handleOpen} style={{cursor: "pointer"}}>Details</strong>
             </div>
 
-            <Modal
-            aria-labelledby="transition-modal-title"
-            aria-describedby="transition-modal-description"
-            className={classes.modal}
-            open={open}
-            onClose={handleClose}
-            closeAfterTransition
-            BackdropComponent={Backdrop}
-            BackdropProps={{
-                timeout: 500,
-            }}
+            <Dialog
+              open={open}
+              onClose={handleClose}
+              aria-labelledby="alert-dialog-title"
+              aria-describedby="alert-dialog-description"
             >
-                <Fade in={open}>
-                <div className={classes.paper}>
-                    <h2 id="transition-modal-title">
-                    Details Section
-                    </h2>
-                </div>
-                </Fade>
-            </Modal>
+              <DialogTitle id="alert-dialog-title">{"This project is created by Jonathan Won."}</DialogTitle>
+              <DialogContent>
+                <DialogContentText id="alert-dialog-description">
+                  Thanks for checking out my project, link to my personal website and code source below!
+                </DialogContentText>
+              </DialogContent>
+              <DialogActions>
+                <Button href="http://jonathanwon.com" target="_blank" color="primary">
+                  Personal Website
+                </Button>
+                <Button href="https://github.com/jabinx92/react-messenger-redux" color="primary" target="_blank" autoFocus>
+                  Code Source
+                </Button>
+              </DialogActions>
+            </Dialog>
 
               {/* chat messages */}
               <div className="chat__messages" ref={messageEl}>
