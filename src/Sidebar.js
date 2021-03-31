@@ -13,17 +13,24 @@ import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
 
+import Card from '@material-ui/core/Card';
+import CardActionArea from '@material-ui/core/CardActionArea';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
+
 const useStyles = makeStyles((theme) => ({
   modal: {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
   },
-  paper: {
-    backgroundColor: theme.palette.background.paper,
-    border: '2px solid #000',
-    boxShadow: theme.shadows[5],
-    padding: theme.spacing(2, 4, 3),
+  root: {
+    maxWidth: 345,
+  },
+  media: {
+    height: 140,
   },
 }));
 
@@ -119,13 +126,26 @@ export function Sidebar(props) {
         }}
       >
         <Fade in={open}>
-          <div className={classes.paper}>
-            <h2 id="transition-modal-title">
-              Are you sure you want to sign out?
-            </h2>
-            <button onClick={() => auth.signOut()}>Yes</button>
-            <button onClick={handleClose}>No</button>
-          </div>
+          <Card className={classes.root}>
+            <CardActionArea>
+              <CardContent>
+                <Typography gutterBottom variant="h5" component="h2">
+                  {user.displayName.split(' ').slice(0,1).join(' ')},
+                </Typography>
+                <Typography variant="body2" color="textSecondary" component="p">
+                  Are you sure you want to sign out?
+                </Typography>
+              </CardContent>
+            </CardActionArea>
+            <CardActions>
+              <Button onClick={() => auth.signOut()} size="small" color="primary">
+                Yes
+              </Button>
+              <Button onClick={handleClose} size="small" color="primary">
+                No
+              </Button>
+            </CardActions>
+          </Card>
         </Fade>
       </Modal>
     </div>
