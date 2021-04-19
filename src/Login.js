@@ -13,6 +13,7 @@ function Login() {
             <div className="login__logo">
                 <img src="https://www.flaticon.com/svg/static/icons/svg/14/14579.svg" alt=""/>
                 <h1>Messenger</h1>
+                <p>Connect with your friends.</p>
             </div>
             <Button onClick={signIn}>Sign In</Button>
           </div>

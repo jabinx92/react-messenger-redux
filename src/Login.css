@@ -3,6 +3,8 @@
     place-items: center;
     height: 100vh;
     width: 100%;
+    margin: auto;
+    text-align: center;
 }
 
 .login > div > img {
@@ -10,11 +12,25 @@
     height: 150px;
 }
 
+.login > div> p {
+        color: rgba(0, 0, 0, 1);
+    font-size: 35px;
+    font-weight: 450;
+    line-height: 40px;
+    margin-bottom: 45px;
+    margin-top: 24px;
+    text-align: center;
+}
+
 .login > button {
-    width: 300px;
-    background-color: #3ea4fb;
-    color: #eff2f5;
-    font-weight: 800;
+    background: #0a7cff;
+    border-radius: 30px;
+    font-size: 15px;
+    height: 46px;
+    line-height: 20px;
+    padding: 0 40px;
+    transition: background .2s ease-in;
+    width: auto;
 }
 
 .login > button:hover {
