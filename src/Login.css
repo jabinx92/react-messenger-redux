@@ -1,7 +1,7 @@
 .login {
     display: grid;
     place-items: center;
-    height: 100vh;
+    height: 75vh;
     width: 100%;
     margin: auto;
     text-align: center;
@@ -12,8 +12,8 @@
     height: 150px;
 }
 
-.login > div> p {
-        color: rgba(0, 0, 0, 1);
+.login > div > p {
+    color: rgba(0, 0, 0, 1);
     font-size: 35px;
     font-weight: 450;
     line-height: 40px;
