@@ -51,20 +51,3 @@
     -ms-overflow-style: none; /* IE and Edge */
     scrollbar-width: none; /* Firefox */
 }
-
-.sidebar > Dialog > DialogActions > Button {
-    background: #0a7cff;
-    border-radius: 30px;
-    font-size: 15px;
-    height: 46px;
-    line-height: 20px;
-    padding: 0 40px;
-    transition: background .2s ease-in;
-    width: auto;
-    color: white;
-}
-
-.sidebar > button:hover {
-    background-color: gainsboro;
-    color: #3ea4fb
-}
