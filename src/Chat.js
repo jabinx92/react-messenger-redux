@@ -25,6 +25,32 @@ export function Chat() {
     const [messages, setMessages] = useState([]);
     const messageEl = useRef(null);
     const [open, setOpen] = useState(false);
+    const [website, setWebsite] = useState(false);
+    const [code, setCode] = useState(false);
+  
+    const onButton = {
+      background: "gainsboro",
+      borderRadius: "30px",
+      fontSize: "15px",
+      height: "46px",
+      lineHeight: "20px",
+      padding: "0 25px",
+      transition: "background .2s ease-in",
+      width: "auto",
+      color: "#3ea4fb",
+    };
+  
+    const button = {
+      background: "#0a7cff",
+      borderRadius: "30px",
+      fontSize: "15px",
+      height: "46px",
+      lineHeight: "20px",
+      padding: "0 25px",
+      transition: "background .2s ease-in",
+      width: "auto",
+      color: "white",
+    }
 
     const handleOpen = () => {
       setOpen(true);
@@ -100,10 +126,10 @@ export function Chat() {
                 </DialogContentText>
               </DialogContent>
               <DialogActions>
-                <Button href="http://jonathanwon.com" target="_blank" color="primary">
+                <Button style={website ? onButton : button} onMouseEnter={() => setWebsite(true)} onMouseLeave={() => setWebsite(false)} href="http://jonathanwon.com" target="_blank" color="primary">
                   Personal Website
                 </Button>
-                <Button href="https://github.com/jabinx92/react-messenger-redux" color="primary" target="_blank" autoFocus>
+                <Button style={code ? onButton : button} onMouseEnter={() => setCode(true)} onMouseLeave={() => setCode(false)} href="https://github.com/jabinx92/react-messenger-redux" color="primary" target="_blank" autoFocus>
                   Code Source
                 </Button>
               </DialogActions>
