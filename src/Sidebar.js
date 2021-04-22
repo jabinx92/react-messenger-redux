@@ -21,6 +21,32 @@ export function Sidebar(props) {
   const [filterChats, setFilteredChats] = useState([]);
   const [search, setSearch] = useState('');
   const [open, setOpen] = useState(false);
+  const [yes, setYesOnMouseOver] = useState(false);
+  const [no, setNoOnMouseOver] = useState(false);
+
+  const onButton = {
+    background: "gainsboro",
+    borderRadius: "30px",
+    fontSize: "15px",
+    height: "46px",
+    lineHeight: "20px",
+    padding: "0 25px",
+    transition: "background .2s ease-in",
+    width: "auto",
+    color: "#3ea4fb",
+  };
+
+  const button = {
+    background: "#0a7cff",
+    borderRadius: "30px",
+    fontSize: "15px",
+    height: "46px",
+    lineHeight: "20px",
+    padding: "0 25px",
+    transition: "background .2s ease-in",
+    width: "auto",
+    color: "white",
+  }
 
   const handleOpen = () => {
     setOpen(true);
@@ -105,10 +131,10 @@ export function Sidebar(props) {
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={() => auth.signOut()} color="primary">
+          <Button style={yes ? onButton : button} onMouseEnter={() => setYesOnMouseOver(true)} onMouseLeave={() => setYesOnMouseOver(false)} onClick={() => auth.signOut()} color="primary">
             Yes
           </Button>
-          <Button onClick={handleClose} color="primary" autoFocus>
+          <Button style={no ? onButton : button} onMouseEnter={() => setNoOnMouseOver(true)} onMouseLeave={() => setNoOnMouseOver(false)} onClick={handleClose} color="primary" autoFocus>
             No
           </Button>
         </DialogActions>
