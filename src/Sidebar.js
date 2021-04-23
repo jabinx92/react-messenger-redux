@@ -142,3 +142,6 @@ export function Sidebar(props) {
     </div>
   );
 }
+
+
+//start adding a functionality to delete chat room, uI on right side animate an arrow that can be pressed, when pressed, it gives the option to press x to delete the chat room from the list
