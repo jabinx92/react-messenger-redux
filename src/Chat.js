@@ -126,11 +126,11 @@ export function Chat() {
                 </DialogContentText>
               </DialogContent>
               <DialogActions>
-                <Button style={website ? onButton : button} onMouseEnter={() => setWebsite(true)} onMouseLeave={() => setWebsite(false)} href="http://jonathanwon.com" target="_blank" color="primary">
-                  Personal Website
-                </Button>
                 <Button style={code ? onButton : button} onMouseEnter={() => setCode(true)} onMouseLeave={() => setCode(false)} href="https://github.com/jabinx92/react-messenger-redux" color="primary" target="_blank" autoFocus>
                   Code Source
+                </Button>
+                <Button style={website ? onButton : button} onMouseEnter={() => setWebsite(true)} onMouseLeave={() => setWebsite(false)} href="http://jonathanwon.com" target="_blank" color="primary">
+                  Personal Website
                 </Button>
               </DialogActions>
             </Dialog>
