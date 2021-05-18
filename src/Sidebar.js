@@ -66,7 +66,7 @@ export function Sidebar(props) {
       )
     );
     db.collection('chats').onSnapshot((snapshot) =>
-    setFilteredChats(
+      setFilteredChats(
         snapshot.docs.map((doc) => ({
           id: doc.id,
           data: doc.data(),
@@ -124,10 +124,10 @@ export function Sidebar(props) {
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
-        <DialogTitle id="alert-dialog-title">{`${user.displayName.split(' ').slice(0,1).join(' ')},`}</DialogTitle>
+        <DialogTitle id="alert-dialog-title">{`${user.displayName.split(' ').slice(0, 1).join(' ')},`}</DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
-          Are you sure you want to sign out?
+            Are you sure you want to sign out?
           </DialogContentText>
         </DialogContent>
         <DialogActions>
